@@ -1,0 +1,15 @@
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/bin/Debug/net7.0/PhoneBoolWithFile1
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/bin/Debug/net7.0/PhoneBoolWithFile1.deps.json
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/bin/Debug/net7.0/PhoneBoolWithFile1.runtimeconfig.json
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/bin/Debug/net7.0/PhoneBoolWithFile1.dll
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/bin/Debug/net7.0/PhoneBoolWithFile1.pdb
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.csproj.AssemblyReference.cache
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.AssemblyInfoInputs.cache
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.AssemblyInfo.cs
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.csproj.CoreCompileInputs.cache
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.dll
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/refint/PhoneBoolWithFile1.dll
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.pdb
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/PhoneBoolWithFile1.genruntimeconfig.cache
+/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/Debug/net7.0/ref/PhoneBoolWithFile1.dll

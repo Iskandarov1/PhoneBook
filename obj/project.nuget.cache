@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "dpKtJh23Xn0PD2TTIYMH+CwZdHYVautsVM/BMYOdrI38i5wTXu6Aa9N1qLldWnQQQnYHr+UHU5jlHMrp5kFJZQ==",
+  "success": true,
+  "projectFilePath": "/Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/PhoneBoolWithFile1.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Users/iskandarovs/RiderProjects/ConsoleApp3/PhoneBoolWithFile1/obj/project.nuget.cache : Found invalid data while decoding."
+    }
+  ]
+}
