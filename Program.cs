@@ -1,7 +1,6 @@
-﻿using PhoneBoolWithFile1.Services;
+﻿using PhoneBoolWithFile1.Models;
+using PhoneBoolWithFile1.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PhoneBoolWithFile1
 {
@@ -9,18 +8,20 @@ namespace PhoneBoolWithFile1
     {
         static void Main(string[] args)
         {
-            IFileService fileService = new FileService();
+            FileService fileService = new FileService();
+            IContactStorage contactStorage = fileService.ContactStorage;
             ILoggingService loggingService = new LoggingServices();
-            
+            ContactService contactService = new ContactService(contactStorage, loggingService);
+
             loggingService.LogInformation("PhoneBook Application Started");
 
-            string fileName = "/Users/iskandarovs/RiderProjects/ConsoleApp4/ConsoleApp4/Text.rtf";
+            string fileName = GetFileName(contactStorage);
 
-            if (!fileService.Exists(fileName))
+            if (!contactStorage.Exists(fileName))
             {
-                fileService.Save(fileName, "Name,PhoneNumber\n");
+                contactStorage.Save(fileName, new System.Collections.Generic.List<Contact>());
             }
-            
+
             while (true)
             {
                 loggingService.OptionsToChoose();
@@ -30,16 +31,16 @@ namespace PhoneBoolWithFile1
                 switch (option)
                 {
                     case 1:
-                        CreateContact(fileService, loggingService, fileName);
+                        contactService.CreateContact(fileName);
                         break;
                     case 2:
-                        ReadContacts(fileService, loggingService, fileName);
+                        contactService.ReadContacts(fileName);
                         break;
                     case 3:
-                        UpdateContact(fileService, loggingService, fileName);
+                        contactService.UpdateContact(fileName);
                         break;
                     case 4:
-                        DeleteContact(fileService, loggingService, fileName);
+                        contactService.DeleteContact(fileName);
                         break;
                     case 5:
                         loggingService.LogInformation("PhoneBook Application Ended");
@@ -51,72 +52,11 @@ namespace PhoneBoolWithFile1
             }
         }
 
-        static void CreateContact(IFileService fileService, ILoggingService loggingService, string fileName)
+        static string GetFileName(IContactStorage contactStorage)
         {
-            Console.Write("Enter Name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter Phone Number: ");
-            string phoneNumber = Console.ReadLine();
-
-            string newContact = $"{name},{phoneNumber}\n";
-            fileService.Append(fileName, newContact);
-
-            loggingService.LogInformation($"Contact {name} created successfully.");
-        }
-
-        static void ReadContacts(IFileService fileService, ILoggingService loggingService, string fileName)
-        {
-            string content = fileService.Read(fileName);
-            Console.WriteLine("\nContacts:");
-            Console.WriteLine(content);
-        }
-
-        static void UpdateContact(IFileService fileService, ILoggingService loggingService, string fileName)
-        {
-            string content = fileService.Read(fileName);
-            
-            var contacts = content.Split('\n').Where(line => !string.IsNullOrWhiteSpace(line)).ToList();
-
-            Console.Write("Enter the name of the contact to update: ");
-            string nameToUpdate = Console.ReadLine();
-
-            var contact = contacts.FirstOrDefault(c => c.StartsWith(nameToUpdate + ","));
-            if (contact != null)
-            {
-                Console.Write("Enter new Phone Number: ");
-                string newPhoneNumber = Console.ReadLine();
-
-                contacts[contacts.IndexOf(contact)] = $"{nameToUpdate},{newPhoneNumber}";
-                fileService.Save(fileName, string.Join("\n", contacts) + "\n");
-
-                loggingService.LogInformation($"Contact {nameToUpdate} updated successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Contact not found.");
-            }
-        }
-
-        static void DeleteContact(IFileService fileService, ILoggingService loggingService, string fileName)
-        {
-            string content = fileService.Read(fileName);
-            var contacts = content.Split('\n').Where(line => !string.IsNullOrWhiteSpace(line)).ToList();
-
-            Console.Write("Enter the name of the contact to delete: ");
-            string nameToDelete = Console.ReadLine();
-
-            var contact = contacts.FirstOrDefault(c => c.StartsWith(nameToDelete + ","));
-            if (contact != null)
-            {
-                contacts.Remove(contact);
-                fileService.Save(fileName, string.Join("\n", contacts) + "\n");
-
-                loggingService.LogInformation($"Contact {nameToDelete} deleted successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Contact not found.");
-            }
+            return contactStorage is JsonContactStorage ? 
+                "/Users/iskandarovs/RiderProjects/ConsoleApp4/ConsoleApp4/contacts.json" : 
+                "/Users/iskandarovs/RiderProjects/ConsoleApp4/ConsoleApp4/contacts.txt";
         }
     }
 }

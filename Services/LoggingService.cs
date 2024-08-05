@@ -2,9 +2,8 @@ using System;
 
 namespace PhoneBoolWithFile1.Services
 {
-    internal class LoggingServices : ILoggingService
+    public class LoggingServices : ILoggingService
     {
-        
         public void OptionsToChoose()
         {
             Console.WriteLine("\nPhoneBook Menu:");
@@ -15,13 +14,10 @@ namespace PhoneBoolWithFile1.Services
             Console.WriteLine("5. Exit");
             Console.Write("Select an option: ");
         }
+
         public void LogInformation(string message)
         {
             Console.WriteLine(message);
         }
-
-        
-        
-        
     }
 }

@@ -1,50 +1,34 @@
-using System.IO;
+using System;
+using PhoneBoolWithFile1.Models;
+using PhoneBoolWithFile1.Services;
 
-namespace PhoneBoolWithFile1.Services
+namespace PhoneBoolWithFile1
 {
-    internal class FileService : IFileService
+    public class FileService
     {
-        private const string filePath = "/Users/iskandarovs/RiderProjects/ConsoleApp4/ConsoleApp4/Text.rtf";
+        private readonly IContactStorage _contactStorage;
 
         public FileService()
         {
-            EnsureFileExists();
+            _contactStorage = ChooseStorageMethod();
         }
 
-        private void EnsureFileExists()
+        public IContactStorage ContactStorage => _contactStorage;
+
+        private IContactStorage ChooseStorageMethod()
         {
-            if (!File.Exists(filePath))
+            Console.WriteLine("Choose storage method:");
+            Console.WriteLine("1. Plain Text File");
+            Console.WriteLine("2. JSON File");
+            Console.Write("Select an option: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            return choice switch
             {
-                File.Create(filePath).Close();
-            }
-        }
-
-        public void Save(string fileName, string data)
-        {
-            File.WriteAllText(fileName, data);
-        }
-
-        public void Append(string fileName, string data)
-        {
-            using (StreamWriter sw = File.AppendText(fileName))
-            {
-                sw.Write(data);
-            }
-        }
-
-        public string Read(string fileName)
-        {
-            return File.ReadAllText(fileName);
-        }
-
-        public void Delete(string fileName)
-        {
-            File.Delete(fileName);
-        }
-
-        public bool Exists(string fileName)
-        {
-            return File.Exists(fileName);
+                1 => new FileContactStorage(),
+                2 => new JsonContactStorage(),
+                _ => throw new InvalidOperationException("Invalid choice")
+            };
         }
     }
 }
